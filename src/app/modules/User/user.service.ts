@@ -5,6 +5,12 @@ const getAllUserFromDB = async () => {
   return result;
 };
 
+const getUserFromDB = async (id: string) => {
+  const result = await User.findById(id, { isDeleted: false });
+  return result;
+};
+
 export const UserService = {
   getAllUserFromDB,
+  getUserFromDB,
 };

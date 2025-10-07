@@ -8,7 +8,30 @@ const getAllUser = async (parent: any, args: any, context: any) => {
     return {
       success: true,
       statusCode: 200,
-      message: "Users fetched successfully",
+      message: "Users retrieved successfully",
+      data: result,
+    };
+  } catch (error) {
+    throw new GraphQLError("Internal Server Error", {
+      extensions: {
+        code: "INTERNAL_SERVER_ERROR",
+        http: {
+          status: 500, // Internal Server Error
+        },
+      },
+    });
+  }
+};
+
+const getUser = async (parent: any, args: { id: string }, context: any) => {
+  try {
+    const { id } = args;
+    const result = await UserService.getUserFromDB(id);
+
+    return {
+      success: true,
+      statusCode: 200,
+      message: "User retrieved successfully",
       data: result,
     };
   } catch (error) {
@@ -25,4 +48,5 @@ const getAllUser = async (parent: any, args: any, context: any) => {
 
 export const UserController = {
   getAllUser,
+  getUser,
 };

@@ -1,7 +1,7 @@
 export const schema = `#graphql
 type Query {
     users: UsersResponse!
-    # user(id:ID!): UserResponse!
+    user(id:ID!): UserResponse!
 }
 
 type Mutation{
