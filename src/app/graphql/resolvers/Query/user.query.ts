@@ -1,7 +1,7 @@
 import { UserController } from "../../../modules/User/user.controller";
 
 const userQueries = {
-  users: UserController.getAllUser,
+  users: UserController.getAllUsers,
   user: UserController.getUser,
 };
 

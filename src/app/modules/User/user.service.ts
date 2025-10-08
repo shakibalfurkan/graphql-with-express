@@ -1,6 +1,6 @@
 import { User } from "./user.model";
 
-const getAllUserFromDB = async () => {
+const getAllUsersFromDB = async () => {
   const result = await User.find({ isDeleted: false });
   return result;
 };
@@ -11,6 +11,6 @@ const getUserFromDB = async (id: string) => {
 };
 
 export const UserService = {
-  getAllUserFromDB,
+  getAllUsersFromDB,
   getUserFromDB,
 };

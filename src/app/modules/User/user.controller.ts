@@ -1,9 +1,9 @@
 import { GraphQLError } from "graphql";
 import { UserService } from "./user.service";
 
-const getAllUser = async (parent: any, args: any, context: any) => {
+const getAllUsers = async (parent: any, args: any, context: any) => {
   try {
-    const result = await UserService.getAllUserFromDB();
+    const result = await UserService.getAllUsersFromDB();
 
     return {
       success: true,
@@ -47,6 +47,6 @@ const getUser = async (parent: any, args: { id: string }, context: any) => {
 };
 
 export const UserController = {
-  getAllUser,
+  getAllUsers,
   getUser,
 };

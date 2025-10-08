@@ -1,12 +1,12 @@
 import Mutation from "./Mutation";
 import Query from "./Query";
-import Relation from "./Relation";
+import RelationResolvers from "./Relation";
 
 const resolvers = {
   // Query resolvers
   Query,
   // Relationship resolvers added here
-  ...Relation,
+  ...RelationResolvers,
   // Mutation resolvers
   Mutation,
 };

@@ -1,7 +1,9 @@
+import Booking from "./booking.relation";
 import User from "./user.relation";
 
-const Relation = {
+const RelationResolvers = {
   User,
+  Booking,
 };
 
-export default Relation;
+export default RelationResolvers;
