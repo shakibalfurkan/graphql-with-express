@@ -12,7 +12,7 @@ export type TBooking = {
   startTime: string;
   endTime: string | null;
   totalCost: number;
-  status: "approve" | "cancel";
+  status: "pending" | "approve" | "cancel";
   returned: boolean;
   isPaid: boolean;
   createdAt?: Date;

@@ -25,7 +25,6 @@ const getAllUser = async (parent: any, args: any, context: any) => {
 
 const getUser = async (parent: any, args: { id: string }, context: any) => {
   try {
-    console.log(args);
     const { id } = args;
     const result = await UserService.getUserFromDB(id);
 
