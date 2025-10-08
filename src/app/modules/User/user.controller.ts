@@ -1,7 +1,31 @@
 import { GraphQLError } from "graphql";
 import { UserService } from "./user.service";
+import type { TUser } from "./user.interface";
 
-const getAllUsers = async (parent: any, args: any, context: any) => {
+const createUser = async (_: any, args: { user: Partial<TUser> }) => {
+  try {
+    const { user } = args;
+    const result = await UserService.createUserInDB(user);
+
+    return {
+      success: true,
+      statusCode: 201,
+      message: "User created successfully",
+      data: result,
+    };
+  } catch (error) {
+    throw new GraphQLError("Internal Server Error", {
+      extensions: {
+        code: "INTERNAL_SERVER_ERROR",
+        http: {
+          status: 500, // Internal Server Error
+        },
+      },
+    });
+  }
+};
+
+const getAllUsers = async () => {
   try {
     const result = await UserService.getAllUsersFromDB();
 
@@ -23,7 +47,7 @@ const getAllUsers = async (parent: any, args: any, context: any) => {
   }
 };
 
-const getUser = async (parent: any, args: { id: string }, context: any) => {
+const getUser = async (_: any, args: { id: string }) => {
   try {
     const { id } = args;
     const result = await UserService.getUserFromDB(id);
@@ -47,6 +71,7 @@ const getUser = async (parent: any, args: { id: string }, context: any) => {
 };
 
 export const UserController = {
+  createUser,
   getAllUsers,
   getUser,
 };

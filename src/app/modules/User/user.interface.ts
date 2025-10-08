@@ -4,5 +4,5 @@ export type TUser = {
   role: "user" | "admin";
   password: string;
   phone: string;
-  isDeleted: boolean;
+  isDeleted?: boolean;
 };

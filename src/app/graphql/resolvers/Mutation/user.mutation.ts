@@ -1,7 +1,7 @@
+import { UserController } from "../../../modules/User/user.controller";
+
 const userMutations = {
-  createUser: (parent: any, args: any, context: any) => {
-    // Implement your user creation logic here
-  },
+  createUser: UserController.createUser,
 };
 
 export default userMutations;

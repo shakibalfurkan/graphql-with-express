@@ -3,11 +3,11 @@ import { Car } from "../../../modules/Car/car.model";
 import { User } from "../../../modules/User/user.model";
 
 const Booking = {
-  user: async (parent: TBooking, args: any, context: any) => {
+  user: async (parent: TBooking) => {
     const result = await User.findById(parent.user);
     return result;
   },
-  car: async (parent: TBooking, args: any, context: any) => {
+  car: async (parent: TBooking) => {
     const result = await Car.findById(parent.car);
     return result;
   },

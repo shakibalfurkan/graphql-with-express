@@ -165,7 +165,7 @@ type Mutation{
 input CreateUserInput{
     name:String!
     email:String!
-    role:String!
+    role:String
     password:String!
     phone:String!
 }
