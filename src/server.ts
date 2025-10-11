@@ -1,7 +1,9 @@
-import { server } from "./app.js";
 import config from "./app/config";
+import { expressMiddleware } from "@as-integrations/express5";
 import connectToDatabase from "./app/utils/db.js";
-import { startStandaloneServer } from "@apollo/server/standalone";
+import express from "express";
+import { connectGraphQL } from "./app/graphql/graphql";
+import cors from "cors";
 
 const port = process.env.PORT || config.port;
 
@@ -9,20 +11,39 @@ const port = process.env.PORT || config.port;
 
 async function main(): Promise<void> {
   try {
+    const app = express();
+
+    // Middlewares
+    app.use(cors());
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+
     // connect to the database
     await connectToDatabase();
 
-    // start the express server
-    // app.listen(process.env.PORT || config.port, () => {
-    //   console.log(`app is listening on port ${config.port}`);
-    // });
+    const graphqlServer = connectGraphQL();
 
     //   start the Apollo server
-    const { url } = await startStandaloneServer(server, {
-      listen: { port: Number(port) },
+    // await connectGraphQL(Number(port));
+
+    // Note you must call `start()` on the `ApolloServer`
+    // instance before passing the instance to `expressMiddleware`
+    await graphqlServer.start();
+
+    app.get("/", (req, res) => {
+      res.status(200).json({
+        success: true,
+        message: "Welcome to the server!",
+      });
     });
 
-    console.log(`🚀  Server ready at: ${url}`);
+    // Specify the path to mount the server
+    app.use("/graphql", expressMiddleware(graphqlServer));
+
+    // start the express server
+    app.listen(port, () => {
+      console.log(`Server is listening on port: ${port}`);
+    });
   } catch (err) {
     // log any errors that occur during startup
     console.log(err);

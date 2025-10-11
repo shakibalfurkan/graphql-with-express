@@ -1,4 +1,4 @@
-export const schema = `#graphql
+export const graphQLSchema = `#graphql
 type Query {
     users(options: QueryOptions): UsersResponse!
     user(id:ID!): UserResponse!

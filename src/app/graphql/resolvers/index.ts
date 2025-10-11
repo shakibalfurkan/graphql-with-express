@@ -2,7 +2,7 @@ import Mutation from "./Mutation";
 import Query from "./Query";
 import RelationResolvers from "./Relation";
 
-const resolvers = {
+const graphQLResolvers = {
   // Query resolvers
   Query,
   // Relationship resolvers added here
@@ -11,4 +11,4 @@ const resolvers = {
   Mutation,
 };
 
-export default resolvers;
+export default graphQLResolvers;
