@@ -105,7 +105,7 @@ type BookingsResponse {
     success: Boolean!
     statusCode: Int!
     message: String!
-    data: [Booking]!
+    data: [Booking]
 }
 
 type BookingResponse {
