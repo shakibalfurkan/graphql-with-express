@@ -3,7 +3,6 @@ import { BookingService } from "./booking.service";
 const getAllBookings = async (_: any, __: any, context: any) => {
   try {
     const token = context.token;
-    console.log({ token });
     if (!token) {
       return {
         success: false,
